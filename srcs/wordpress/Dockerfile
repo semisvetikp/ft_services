@@ -1,7 +1,6 @@
 FROM alpine:3.12
 RUN apk update && apk upgrade
 RUN apk add nginx openssl
-# RUN apk add mariadb-server
 RUN apk add php7-fpm 
 RUN apk add php7-json
 RUN apk add php7-phar 
@@ -20,6 +19,7 @@ RUN mkdir -p /home/public_html
 WORKDIR /home/public_html
 RUN wp core download --allow-root
 RUN chown -R 775 /home/public_html/
+COPY ./wp-config.php /home/public_html/
 # RUN chgrp /home/public_html/wp-content/uploads/ web
 
 # RUN wp core install --url="jradioac.ru"  --title="jradioac" --admin_user="jradioac" --admin_password="jradioac" --admin_email="mail@email.ru"
@@ -29,7 +29,11 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private
 -subj "/C=RU/ST=Kazan/L=Tatarstan/O=21School/CN=localhost"
 RUN mkdir -p /run/nginx
 
+# RUN chown -R root /home/public_html
 WORKDIR /
-EXPOSE 80 443
-# CMD sh wp_main.sh
-ENTRYPOINT ["sh"]
+COPY ./*.sh .
+RUN chmod +x wp_main.sh
+
+EXPOSE 5050
+CMD sh wp_main.sh
+# ENTRYPOINT ["sh"]

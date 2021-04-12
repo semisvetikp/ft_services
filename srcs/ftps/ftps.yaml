@@ -8,8 +8,13 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
+      name: active
       port: 21
       targetPort: 21
+    - protocol: TCP
+      name: passive
+      port: 2100
+      targetPort: 2100     
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,3 +38,4 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 21
+        - containerPort: 2100

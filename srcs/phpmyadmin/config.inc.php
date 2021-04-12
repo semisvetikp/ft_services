@@ -29,7 +29,8 @@ $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = 'localhost';
+$cfg['Servers'][$i]['host'] = 'mysql-svc';
+$cfg['Servers'][$i]['port'] = '3306';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
@@ -38,10 +39,10 @@ $cfg['Servers'][$i]['AllowNoPassword'] = true;
  */
 
 /* User used to manipulate with storage */
-// $cfg['Servers'][$i]['controlhost'] = '';
-// $cfg['Servers'][$i]['controlport'] = '';
-$cfg['Servers'][$i]['controluser'] = 'jradioac';
-$cfg['Servers'][$i]['controlpass'] = '123';
+// $cfg['Servers'][$i]['controlhost'] = 'mysql-svc';
+// $cfg['Servers'][$i]['controlport'] = '3306';
+// $cfg['Servers'][$i]['controluser'] = 'jradioac';
+// $cfg['Servers'][$i]['controlpass'] = '123';
 
 /* Storage database and tables */
 // $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';

@@ -24,6 +24,10 @@ COPY ./config.inc.php /usr/share/webapps/phpmyadmin
 RUN chmod 755 /usr/share/webapps/phpmyadmin/config.inc.php
 # RUN chmod 644 /home/www/phpMyAdmin
 
+WORKDIR /
+COPY ./*.sh .
+RUN chmod +x php_main.sh
 
 EXPOSE 5000
-ENTRYPOINT [ "sh" ]
+CMD sh php_main.sh
+# ENTRYPOINT [ "sh" , "nginx" , "&&" , "php-fpm7"]
