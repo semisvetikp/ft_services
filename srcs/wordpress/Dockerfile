@@ -16,10 +16,10 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar /
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir -p /home/public_html
+COPY ./wp-config.php /home/public_html/
 WORKDIR /home/public_html
 RUN wp core download --allow-root
 RUN chown -R 775 /home/public_html/
-COPY ./wp-config.php /home/public_html/
 # RUN chgrp /home/public_html/wp-content/uploads/ web
 
 # RUN wp core install --url="jradioac.ru"  --title="jradioac" --admin_user="jradioac" --admin_password="jradioac" --admin_email="mail@email.ru"

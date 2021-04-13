@@ -27,4 +27,5 @@ mysql -u root -p"$ROOTPASS" -e "create user "$DBUSER"@'%' identified by '$DBPASS
 # Создание базы данных и назначение привилегий пользователя.
 mysql -u root -p"$ROOTPASS" -e "create database "$DBNAME"; grant all on "$DBNAME".* to "$DBUSER"@'%'; flush privileges;"
 
-mysqld_safe
+# mysqld_safe
+supervisord -c /etc/supervisor.conf

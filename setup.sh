@@ -3,6 +3,9 @@ minikube addons enable metallb
 kubectl apply -f srcs/configmap.yaml
 eval $(minikube docker-env)
 
+docker pull metallb/speaker:v0.8.2
+docker pull metallb/controller:v0.8.2
+
 #mysql
 docker build srcs/mysql --tag mysql_image
 kubectl apply -f srcs/mysql/mysql.yaml
@@ -19,10 +22,13 @@ kubectl apply -f srcs/wordpress/wp.yaml
 docker build srcs/phpmyadmin --tag phpmyadmin_image
 kubectl apply -f srcs/phpmyadmin/phpma.yaml
 
-# #ftps
-# docker build srcs/ftps --tag ftps_image
-# kubectl apply -f srcs/ftps/ftps.yaml
+#ftps
+docker build srcs/ftps --tag ftps_image
+kubectl apply -f srcs/ftps/ftps.yaml
 
+#grafana
+docker build srcs/grafana --tag grafana_image
+kubectl apply -f srcs/grafana/grafana.yaml
 
 # minikube dashboard
 # kubectl delete svc nginx-svc
