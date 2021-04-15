@@ -15,9 +15,12 @@ COPY *.sh .
 RUN chmod +x main.sh
 COPY my.cnf /etc/my.cnf
 COPY supervisor.conf /etc/
+COPY ./wp.sql .
+RUN chmod +x wp.sql
+
 
 VOLUME ["/var/lib/mysql"]
 
 EXPOSE 3306
-ENTRYPOINT [ "sh", "main.sh" ]
-# CMD sh main.sh
+# ENTRYPOINT [ "sh" ]
+CMD sh main.sh

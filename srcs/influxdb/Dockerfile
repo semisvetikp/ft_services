@@ -6,21 +6,20 @@ RUN apk add telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/commun
 RUN apk add supervisor
 RUN apk add php7-fpm  php7-json wget
 
-RUN apk add openrc 
-RUN mkdir -p /run/openrc
-RUN rc-update && touch /run/openrc/softlevel 
+COPY ./supervisor.conf ./etc
 
 
-COPY *.sh .
-RUN chmod +x influxdb_main.sh
-COPY supervisor.conf /etc/
-
-COPY influxdb.conf /etc/influxdb.conf
-COPY telegraf.conf /etc/telegraf.conf
+RUN mkdir -p ./etc/influxdb
+COPY ./influxdb.conf ./etc/influxdb/influxdb.conf
+RUN chown influxdb:influxdb /etc/influxdb
+RUN mkdir -p /etc/telegraf
+# COPY ./telegraf.conf ./etc/telegraf/
+#RUN chown telegraf:telegraf /etc/telegraf
+RUN telegraf -sample-config --input-filter docker --output-filter influxdb > ./etc/telegraf/telegraf.conf
+# RUN telegraf
 
 VOLUME [ "/var/lib/influxdb" ]
 
 EXPOSE 8086
-ENTRYPOINT [ "sh" ]
-# , "influxdb_main.sh" ]
-# CMD sh main.sh
+ENTRYPOINT  [ "supervisord", "-c", "./etc/supervisor.conf" ]
+# ENTRYPOINT [ "sh" ]

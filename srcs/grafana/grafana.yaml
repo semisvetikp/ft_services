@@ -6,7 +6,7 @@ metadata:
   name: grafana-svc
 spec:
   selector:
-    app: ftps
+    app: grafana
   type: LoadBalancer
   ports:
     - protocol: TCP

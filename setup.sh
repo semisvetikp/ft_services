@@ -30,6 +30,10 @@ kubectl apply -f srcs/ftps/ftps.yaml
 docker build srcs/grafana --tag grafana_image
 kubectl apply -f srcs/grafana/grafana.yaml
 
+#influxdb
+docker build srcs/influxdb --tag influxdb_image
+kubectl apply -f srcs/influxdb/influxdb.yaml
+
 # minikube dashboard
 # kubectl delete svc nginx-svc
 # kubectl delete deploy nginx-deployment
