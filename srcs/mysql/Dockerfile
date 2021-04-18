@@ -22,5 +22,4 @@ RUN chmod +x wp.sql
 VOLUME ["/var/lib/mysql"]
 
 EXPOSE 3306
-# ENTRYPOINT [ "sh" ]
 CMD sh main.sh

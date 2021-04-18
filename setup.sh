@@ -39,3 +39,4 @@ kubectl apply -f srcs/influxdb/influxdb.yaml
 # kubectl delete deploy nginx-deployment
 # kubectl get svc 
 # kubectl get deploy 
+# kubectl delete -f srcs/wordpress/wp.yaml

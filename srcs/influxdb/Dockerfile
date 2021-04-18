@@ -7,19 +7,13 @@ RUN apk add supervisor
 RUN apk add php7-fpm  php7-json wget
 
 COPY ./supervisor.conf ./etc
-
-
 RUN mkdir -p ./etc/influxdb
 COPY ./influxdb.conf ./etc/influxdb/influxdb.conf
 RUN chown influxdb:influxdb /etc/influxdb
 RUN mkdir -p /etc/telegraf
-# COPY ./telegraf.conf ./etc/telegraf/
-#RUN chown telegraf:telegraf /etc/telegraf
 RUN telegraf -sample-config --input-filter docker --output-filter influxdb > ./etc/telegraf/telegraf.conf
-# RUN telegraf
 
 VOLUME [ "/var/lib/influxdb" ]
 
 EXPOSE 8086
 ENTRYPOINT  [ "supervisord", "-c", "./etc/supervisor.conf" ]
-# ENTRYPOINT [ "sh" ]

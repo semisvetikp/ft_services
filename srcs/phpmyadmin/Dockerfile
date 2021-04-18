@@ -1,6 +1,7 @@
 FROM alpine:3.12
 RUN apk update && apk upgrade
 RUN apk add nginx openssl
+RUN apk add supervisor
 RUN apk add php7-fpm  php7-json wget
 RUN apk add php7-common php7-fpm && \
 apk add php7-session php7-iconv php7-json php7-gd php7-curl php7-xml && \
@@ -10,6 +11,7 @@ apk add php7-ldap php7-ctype php7-dom php7-mbstring
 
 
 # nginx
+COPY ./supervisor.conf ./etc/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt \
 -subj "/C=RU/ST=Kazan/L=Tatarstan/O=21School/CN=localhost"
@@ -22,12 +24,8 @@ RUN tar -xvf phpMyAdmin-5.0.4-all-languages.tar.gz && rm -rf *.tar.gz && mv phpM
 RUN chmod -R 777 /usr/share/webapps/phpmyadmin
 COPY ./config.inc.php /usr/share/webapps/phpmyadmin
 RUN chmod 755 /usr/share/webapps/phpmyadmin/config.inc.php
-# RUN chmod 644 /home/www/phpMyAdmin
+
 
 WORKDIR /
-COPY ./*.sh .
-RUN chmod +x php_main.sh
-
 EXPOSE 5000
-CMD sh php_main.sh
-# ENTRYPOINT [ "sh" , "nginx" , "&&" , "php-fpm7"]
+ENTRYPOINT  [ "supervisord", "-c", "/etc/supervisor.conf" ]

@@ -495,7 +495,7 @@ CREATE TABLE `wp_users` (
 --
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
-(1, 'jradioac', '$P$B7YbbOOzT4NKnYJLFHKiOLYHrYMTqA0', 'jradioac', 'semisvetik.p@gmail.com', 'https://192.168.99.100:5050', '2021-04-14 17:04:37', '', 0, 'jradioac'),
+(1, 'jradioac', '$P$BLIwZyiB0J2XvUAsNyKQI1hyEMox0A0', 'jradioac', 'semisvetik.p@gmail.com', 'https://192.168.99.100:5050', '2021-04-14 17:04:37', '', 0, 'jradioac'),
 (2, 'Padme', '$P$BHjyb.gIO6ZpO5OdnT.cnkRYXamp0p1', 'padme', 'padme@mail.ru', '', '2021-04-14 17:06:40', '1618420000:$P$ByQ3wAJUOud7LEPJUO1xipVBTR9DEf/', 0, 'Padme Amidala'),
 (3, 'Bilbo', '$P$B8S3E0sF1rV6MSxcZexFEtBDK.WwKz/', 'bilbo', 'bilbo@mai.ru', '', '2021-04-14 17:07:28', '1618420048:$P$Bjppzgyk5YTg9mMQmbv0ZUka8hMaC20', 0, 'Bilbo Baggins'),
 (4, 'Albus', '$P$BF9OMmE/hNuLk4XM/ggcL/IrYIMANQ0', 'albus', 'albus@mail.ru', '', '2021-04-14 17:08:26', '1618420106:$P$Bu9AIf94cVip7SXWIy6K6nwbNljyoT/', 0, 'Albus Dambldor');
