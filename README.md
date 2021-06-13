@@ -8,3 +8,6 @@ The project consists of setting up an infrastructure of different services. Done
 Each service have to run in a dedicated container.
 
 Each container was build using Alpine Linux.
+
+Dockerfile called in the setup.sh. 
+
